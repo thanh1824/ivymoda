@@ -1,6 +1,6 @@
 @extends('admin.layouts.admin')
 
-@section('title','Thêm Danh Mục Tin')
+@section('title','Add Post')
 
 @section('content')
 <div class="content-wrapper">
@@ -9,12 +9,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Create News</h1>
+            <h1>Create Post</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Create news</li>
+              <li class="breadcrumb-item active">Create post</li>
             </ol>
           </div>
         </div>
@@ -23,20 +23,47 @@
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
-      	<form action="{{ route('news.store') }}" method="post">
+      	<form action="{{ route('posts.store') }}" method="post">
       		@csrf
       		<div class="row">
-	          <div class="col-md-8">
+	          <div class="col-md-12">
 	            <div class="card card-info">
 	              <div class="card-header">
-	                <h3 class="card-title">Thêm Danh mục tin tức</h3>
+	                <h3 class="card-title">Thêm Tin</h3>
 	              </div>
 	              <div class="card-body">
+                  <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                      <div class="form-group">
+                        <label>Loại tin</label>
+                        <select class="form-control select2" name="news_id" style="width: 100%;">
+                          <option selected="selected">---Chọn---</option>
+                          <option value="">Tin nội bộ</option>
+                        </select>
+                      </div>
+                      <!-- Color Picker -->
+                      <div class="form-group">
+                        <label>Tiêu đề:</label>
+                        <input type="text" name="title" class="form-control my-colorpicker1">
+                      </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                      <div class="form-group">
+                        <label>Seo title:</label>
+                        <input type="text" name="seo_title" class="form-control my-colorpicker1">
+                      </div>
+                      <div class="form-group">
+                        <label>Seo key:</label>
+                        <input type="text" name="seo_key" class="form-control my-colorpicker1">
+                      </div>
+                      <div class="form-group">
+                        <label>Seo description:</label>
+                        <input type="text" name="seo_des" class="form-control my-colorpicker1">
+                      </div>
+                    </div>
+                  </div>
+                  
 	              	
-	                <div class="form-group">
-	                  <label>Tên danh mục:</label>
-	                  <input type="text" name="name" class="form-control my-colorpicker1">
-	                </div>
 	                <div class="form-group">
 	                	<button class="btn btn-info" type="submit">Submit</button>
 	                </div>
@@ -47,9 +74,7 @@
 
 	          </div>
 	          <!-- /.col (left) -->
-	          <div class="col-md-4">
-	          </div>
-	          <!-- /.col (right) -->
+	          
 	        </div>
       	</form>
       </div>

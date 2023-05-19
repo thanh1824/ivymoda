@@ -10,12 +10,12 @@
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">
-        <h1 class="m-0">Danh mục tin tức</h1>
+        <h1 class="m-0">Bài viết</h1>
       </div><!-- /.col -->
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
           <li class="breadcrumb-item"><a href="#">Home</a></li>
-          <li class="breadcrumb-item active">Danh mục tin</li>
+          <li class="breadcrumb-item active">bài viết</li>
         </ol>
       </div><!-- /.col -->
     </div><!-- /.row -->
@@ -30,14 +30,16 @@
           <div class="col-12">
             <div class="card">
               <div class="card-header">
-                <a href="{{ route('news.add') }}" class="btn btn-success">Add</a>
+                <a href="{{ route('posts.add') }}" class="btn btn-success">Add</a>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                   <tr>
-                    <th>Tên danh mục</th>
+                    <th>Tiêu đề</th>
+                    <th>Hình Ảnh</th>
+                    <th>Thời gian tạo</th>
                     <th></th>
                   </tr>
                   </thead>
@@ -45,10 +47,11 @@
                   @foreach($data as $item)
                     
                   <tr>
-                    <td>{{ $item['name'] }}</td>
-                    
-                    <td><a href="{{ route('news.edit', ['id'=>$item['id']]) }}"><i class="fas fa-pen"></i></a> <span style="padding: 10px">|</span>
-                      <a href="{{ route('news.delete',['id'=>$item['id']]) }}" onclick="alert('Bạn có chắc muốn xóa danh mục này?')" style="color:red"><i class="fas fa-light fa-trash"></i></a></td>
+                    <td>{{ $item['title'] }}</td>
+                    <td><img src="https://pubcdn.ivymoda.com/files/news/2023/05/06/b49e652f57bb6183634060da67260916jpgjpgjpgjpgjpgjpg.jpg" alt=""></td>
+                    <td>20.10.1945</td>
+                    <td><a href="{{ route('posts.edit', ['id'=>$item['id']]) }}"><i class="fas fa-pen"></i></a> <span style="padding: 10px">|</span>
+                      <a href="{{ route('posts.delete',['id'=>$item['id']]) }}" onclick="alert('Bạn có chắc muốn xóa danh mục này?')" style="color:red"><i class="fas fa-light fa-trash"></i></a></td>
                   </tr>
                   @endforeach
                   </tbody>

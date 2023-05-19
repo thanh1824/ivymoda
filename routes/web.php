@@ -5,6 +5,8 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\SizeController;
 use App\Http\Controllers\ColorController;
+use App\Http\Controllers\NewsController;
+use App\Http\Controllers\PostsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,6 +50,22 @@ Route::group(['prefix' => 'quan-tri-he-thong'], function () {
 		Route::get('/edit/{id}', [ColorController::class, 'edit'])->name('color.edit');
 		Route::post('/update/{id}',[ColorController::class, 'update'])->name('color.update');
 		Route::get('/delete/{id}', [ColorController::class, 'delete'])->name('color.delete');
+	});
+	Route::group(['prefix' => 'news'], function () {
+		Route::get('/list', [NewsController::class, 'list'])->name('news.list');
+		Route::get('/create', [NewsController::class, 'create'])->name('news.add');
+		Route::post('/store', [NewsController::class, 'store'])->name('news.store');
+		Route::get('/edit/{id}', [NewsController::class, 'edit'])->name('news.edit');
+		Route::post('/update/{id}',[NewsController::class, 'update'])->name('news.update');
+		Route::get('/delete/{id}', [NewsController::class, 'delete'])->name('news.delete');
+	});
+	Route::group(['prefix' => 'posts'], function () {
+		Route::get('/list', [PostsController::class, 'list'])->name('posts.list');
+		Route::get('/create', [PostsController::class, 'create'])->name('posts.add');
+		Route::post('/store', [PostsController::class, 'store'])->name('posts.store');
+		Route::get('/edit/{id}', [PostsController::class, 'edit'])->name('posts.edit');
+		Route::post('/update/{id}',[PostsController::class, 'update'])->name('posts.update');
+		Route::get('/delete/{id}', [PostsController::class, 'delete'])->name('posts.delete');
 	});
 });
 
