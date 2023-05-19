@@ -20,6 +20,11 @@
   <link rel="stylesheet" href="{{ asset('plugins/select2/css/select2.min.css') }}">
   <link rel="stylesheet" href="{{ asset('plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
   <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
+  <!-- summernote -->
+  <link rel="stylesheet" href="{{ asset('plugins/summernote/summernote-bs4.min.css') }}">
+  <!-- CodeMirror -->
+  <link rel="stylesheet" href="{{ asset('plugins/codemirror/codemirror.css') }}">
+  <link rel="stylesheet" href="{{ asset('plugins/codemirror/theme/monokai.css') }}">
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -30,11 +35,35 @@
 
   <!-- Main Sidebar Container -->
   @include('admin.patials.sidebar')
-
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>@yield('controller')</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">@yield('action')</li>
+            </ol>
+          </div>
+          <div class="col-lg-12">
+              @if (Session::has('flash_message'))
+                  <div class="alert alert-{!! Session::get('flash_level') !!}">
+                      {!! Session::get('flash_message') !!}
+                  </div>
+              @endif
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- Main content -->
   <!-- Content Wrapper. Contains page content -->
   @yield('content')
   <!-- /.content-wrapper -->
-
+</div>
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
     <!-- Control sidebar content goes here -->
@@ -75,6 +104,10 @@
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{ asset('dist/js/pages/dashboard3.js') }}"></script>
 @yield('script')
-
+<script>
+  $(document).ready(function(){
+      $('div.alert').delay(3000).slideUp();
+  });
+</script>
 </body>
 </html>

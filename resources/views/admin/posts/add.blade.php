@@ -1,32 +1,17 @@
 @extends('admin.layouts.admin')
 
 @section('title','Add Post')
-
+@section('controller','Create Post')
+@section('action','Thêm tin')
 @section('content')
-<div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1>Create Post</h1>
-          </div>
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Create post</li>
-            </ol>
-          </div>
-        </div>
-      </div><!-- /.container-fluid -->
-    </section>
-    <!-- Main content -->
+
     <section class="content">
       <div class="container-fluid">
-      	<form action="{{ route('posts.store') }}" method="post">
+      	<form action="{{ route('posts.store') }}" method="post" enctype="multipart/form-data">
       		@csrf
       		<div class="row">
 	          <div class="col-md-12">
+              @include('admin.patials.error')
 	            <div class="card card-info">
 	              <div class="card-header">
 	                <h3 class="card-title">Thêm Tin</h3>
@@ -38,32 +23,44 @@
                         <label>Loại tin</label>
                         <select class="form-control select2" name="news_id" style="width: 100%;">
                           <option selected="selected">---Chọn---</option>
-                          <option value="">Tin nội bộ</option>
+                          @foreach($data as $item)
+                          <option value="{{ $item['id'] }}">{{ $item['name'] }}</option>
+                          @endforeach
                         </select>
                       </div>
                       <!-- Color Picker -->
                       <div class="form-group">
                         <label>Tiêu đề:</label>
-                        <input type="text" name="title" class="form-control my-colorpicker1">
+                        <input type="text" name="title" value="{{ old('title') }}" class="form-control my-colorpicker1">
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleFormControlFile1">Hình Ảnh</label>
+                        <input type="file" name="news_image" class="form-control-file" id="exampleFormControlFile1">
                       </div>
                     </div>
                     <div class="col-md-6 col-sm-12">
                       <div class="form-group">
                         <label>Seo title:</label>
-                        <input type="text" name="seo_title" class="form-control my-colorpicker1">
+                        <input type="text" name="seo_title" value="{{ old('seo_title') }}" class="form-control my-colorpicker1">
                       </div>
                       <div class="form-group">
                         <label>Seo key:</label>
-                        <input type="text" name="seo_key" class="form-control my-colorpicker1">
+                        <input type="text" name="seo_key" value="{{ old('seo_key') }}" class="form-control my-colorpicker1">
                       </div>
                       <div class="form-group">
                         <label>Seo description:</label>
-                        <input type="text" name="seo_des" class="form-control my-colorpicker1">
+                        <input type="text" name="seo_des" value="{{ old('seo_des') }}" class="form-control my-colorpicker1">
                       </div>
+                    </div>
+                    <div class="col-md-12">
+                      <div class="">
+                        <label>Nội dung:</label>
+                        <textarea id="summernote" name="content" value="{{ old('content') }}" rows=""></textarea>
+                      </div>
+                      
                     </div>
                   </div>
                   
-	              	
 	                <div class="form-group">
 	                	<button class="btn btn-info" type="submit">Submit</button>
 	                </div>
@@ -81,13 +78,18 @@
       <!-- /.container-fluid -->
     </section>
     <!-- /.content -->
-  </div>
-  <!-- /.content-wrapper -->
 
 @endsection
 @section('script')
 <!-- Select2 -->
 <script src="{{ asset('plugins/select2/js/select2.full.min.js') }}"></script>
+<!-- Summernote -->
+<script src="{{ asset('plugins/summernote/summernote-bs4.min.js') }}"></script>
+<!-- CodeMirror -->
+<script src="{{ asset('plugins/codemirror/codemirror.js') }}"></script>
+<script src="{{ asset('plugins/codemirror/mode/css/css.js') }}"></script>
+<script src="{{ asset('plugins/codemirror/mode/xml/xml.js') }}"></script>
+<script src="{{ asset('plugins/codemirror/mode/htmlmixed/htmlmixed.js') }}"></script>
 <script>
   $(function () {
     //Initialize Select2 Elements
@@ -159,7 +161,16 @@
       $('.my-colorpicker2 .fa-square').css('color', event.color.toString());
     })
   })
-  
+  $(function () {
+    // Summernote
+    $('#summernote').summernote()
+
+    // CodeMirror
+    CodeMirror.fromTextArea(document.getElementById("codeMirrorDemo"), {
+      mode: "htmlmixed",
+      theme: "monokai"
+    });
+  })
   
 </script>
 @endsection

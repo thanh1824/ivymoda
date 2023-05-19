@@ -2,28 +2,10 @@
 @extends('admin.layouts.admin')
 
 @section('title','Ivy Moda')
-
+@section('controller','List Color')
+@section('action','Danh sách')
 @section('content')
-<div class="content-wrapper">
-<!-- Content Header (Page header) -->
-<div class="content-header">
-  <div class="container-fluid">
-    <div class="row mb-2">
-      <div class="col-sm-6">
-        <h1 class="m-0">Màu sản phẩm</h1>
-      </div><!-- /.col -->
-      <div class="col-sm-6">
-        <ol class="breadcrumb float-sm-right">
-          <li class="breadcrumb-item"><a href="#">Home</a></li>
-          <li class="breadcrumb-item active">color</li>
-        </ol>
-      </div><!-- /.col -->
-    </div><!-- /.row -->
-  </div><!-- /.container-fluid -->
-</div>
-<!-- /.content-header -->
 
-<!-- Main content -->
 <section class="content">
       <div class="container-fluid">
         <div class="row">
@@ -47,7 +29,7 @@
                   <tr>
                     <td>{{ $item['name'] }}</td>
                     <td><a href="{{ route('color.edit', ['id'=>$item['id']]) }}"><i class="fas fa-pen"></i></a> <span style="padding: 10px">|</span>
-                      <a href="{{ route('color.delete',['id'=>$item['id']]) }}" onclick="alert('Bạn có chắc muốn xóa danh mục này?')" style="color:red"><i class="fas fa-light fa-trash"></i></a></td>
+                      <a href="{{ route('color.delete',['id'=>$item['id']]) }}" onclick="return confirm('Bạn chắc muốn xóa mã màu này ?')" style="color:red"><i class="fas fa-light fa-trash"></i></a></td>
                   </tr>
                   @endforeach
                   </tbody>
@@ -63,8 +45,7 @@
       </div>
       <!-- /.container-fluid -->
     </section>
-    <!-- /.content -->
-</div>
+
 @endsection
 @section('script')
 <script>

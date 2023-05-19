@@ -1,26 +1,10 @@
 @extends('admin.layouts.admin')
 
 @section('title','Thêm Danh Mục Tin')
-
+@section('controller','List Category')
+@section('action','Danh sách')
 @section('content')
-<div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1>Create News</h1>
-          </div>
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Create news</li>
-            </ol>
-          </div>
-        </div>
-      </div><!-- /.container-fluid -->
-    </section>
-    <!-- Main content -->
+
     <section class="content">
       <div class="container-fluid">
       	<form action="{{ route('news.store') }}" method="post">
@@ -35,7 +19,7 @@
 	              	
 	                <div class="form-group">
 	                  <label>Tên danh mục:</label>
-	                  <input type="text" name="name" class="form-control my-colorpicker1">
+	                  <input type="text" name="name" value="{{ old('name') }}" class="form-control my-colorpicker1">
 	                </div>
 	                <div class="form-group">
 	                	<button class="btn btn-info" type="submit">Submit</button>
@@ -56,8 +40,6 @@
       <!-- /.container-fluid -->
     </section>
     <!-- /.content -->
-  </div>
-  <!-- /.content-wrapper -->
 
 @endsection
 @section('script')
