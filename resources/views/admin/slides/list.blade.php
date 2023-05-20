@@ -1,8 +1,8 @@
 
 @extends('admin.layouts.admin')
 
-@section('title','News Ivy Moda')
-@section('controller','List News')
+@section('title','Slide Ivy Moda')
+@section('controller','List Slide')
 @section('action','Danh sách')
 @section('content')
 
@@ -12,14 +12,15 @@
           <div class="col-12">
             <div class="card">
               <div class="card-header">
-                <a href="{{ route('news.add') }}" class="btn btn-success">Add</a>
+                <a href="{{ route('slides.add') }}" class="btn btn-success">Add</a>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                   <tr>
-                    <th>Tên danh mục</th>
+                    <th>Hình Ảnh</th>
+                    <th>Url</th>
                     <th></th>
                   </tr>
                   </thead>
@@ -27,10 +28,10 @@
                   @foreach($data as $item)
                     
                   <tr>
-                    <td>{{ $item['name'] }}</td>
-                    
-                    <td><a href="{{ route('news.edit', ['id'=>$item['id']]) }}"><i class="fas fa-pen"></i></a> <span style="padding: 10px">|</span>
-                      <a href="{{ route('news.delete',['id'=>$item['id']]) }}" onclick="return confirm('Bạn chắc muốn xóa danh mục này ?')" style="color:red"><i class="fas fa-light fa-trash"></i></a></td>
+                    <td><img style="max-width: 150px;" class="img-responsive" src="{{ asset($item['image']) }}" alt=""></td>
+                    <td>{{ $item['url'] }}</td>
+                    <td><a href="{{ route('slides.edit', ['id'=>$item['id']]) }}"><i class="fas fa-pen"></i></a> <span style="padding: 10px">|</span>
+                      <a href="{{ route('slides.delete',['id'=>$item['id']]) }}" onclick="return confirm('Bạn chắc muốn xóa ảnh này')" style="color:red"><i class="fas fa-light fa-trash"></i></a></td>
                   </tr>
                   @endforeach
                   </tbody>
@@ -46,7 +47,6 @@
       </div>
       <!-- /.container-fluid -->
     </section>
-
 @endsection
 @section('script')
 <script>

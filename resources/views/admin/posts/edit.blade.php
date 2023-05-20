@@ -7,7 +7,7 @@
 
     <section class="content">
       <div class="container-fluid">
-        <form action="{{ route('posts.store') }}" method="post" enctype="multipart/form-data">
+        <form action="{{ route('posts.update',['id'=>$data->id]) }}" method="post" enctype="multipart/form-data">
           @csrf
           <div class="row">
             <div class="col-md-12">
@@ -34,11 +34,11 @@
                       <!-- Color Picker -->
                       <div class="form-group">
                         <label>Tiêu đề:</label>
-                        <input type="text" name="title" value="{{ $data->title }}" class="form-control my-colorpicker1">
+                        <input type="text" name="title" value="{{ old('title',isset($data) ? $data->title : null) }}" class="form-control my-colorpicker1">
                       </div>
                       <div class="form-group">
                           <label>Hình hiện tại</label>
-                          <img src="https://pubcdn.ivymoda.com/files/news/2023/05/06/b49e652f57bb6183634060da67260916jpgjpgjpgjpgjpgjpg.jpg" width="150px" class="img-responsive">
+                          <img src="{{ asset($data->image) }}" width="150px" class="img-responsive">
                           <input type="hidden" name="fImageCurrent" value="{!! $data->image !!}">
                       </div>
                       <div class="form-group">
@@ -49,23 +49,22 @@
                     <div class="col-md-6 col-sm-12">
                       <div class="form-group">
                         <label>Seo title:</label>
-                        <input type="text" name="seo_title" value="{{ $data->seo_title }}" class="form-control my-colorpicker1">
+                        <input type="text" name="seo_title" value="{{ old('seo_title',isset($data) ? $data->seo_title : null) }}" class="form-control my-colorpicker1">
                       </div>
                       <div class="form-group">
                         <label>Seo key:</label>
-                        <input type="text" name="seo_key" value="{{ $data->seo_key }}" class="form-control my-colorpicker1">
+                        <input type="text" name="seo_key" value="{{ old('seo_key',isset($data) ? $data->seo_key : null) }}" class="form-control my-colorpicker1">
                       </div>
                       <div class="form-group">
                         <label>Seo description:</label>
-                        <input type="text" name="seo_des" value="{{ $data->seo_des }}" class="form-control my-colorpicker1">
+                        <input type="text" name="seo_des" value="{{ old('seo_des',isset($data) ? $data->seo_des : null) }}" class="form-control my-colorpicker1">
                       </div>
                     </div>
                     <div class="col-md-12">
                       <div class="">
                         <label>Nội dung:</label>
-                        <textarea id="summernote" name="content" rows="">{{ $data->content }}</textarea>
+                        <textarea id="summernote" name="content" rows="">{{ old('content',isset($data) ? $data->content : null) }}</textarea>
                       </div>
-                      
                     </div>
                   </div>
                   

@@ -1,20 +1,20 @@
 @extends('admin.layouts.admin')
 
-@section('title','Edit Color')
-@section('controller','List Color')
-@section('action','Danh sách')
+@section('title','Edit Parameter')
+@section('controller','List Parameter')
+@section('action','Sửa')
 @section('content')
 
     <section class="content">
       <div class="container-fluid">
-      	<form action="{{ route('color.update',['id'=>$data->id]) }}" method="post">
+      	<form action="{{ route('parameters.update',['id'=>$data->id]) }}" method="post">
           @csrf
           <div class="row">
             <div class="col-md-8">
               <div class="card card-info">
                 @include('admin.patials.error')
                 <div class="card-header">
-                  <h3 class="card-title">Sửa Màu</h3>
+                  <h3 class="card-title">Sửa thông số</h3>
                 </div>
                 <div class="card-body">
                   
@@ -56,54 +56,6 @@
       theme: 'bootstrap4'
     })
 
-    //Datemask dd/mm/yyyy
-    $('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
-    //Datemask2 mm/dd/yyyy
-    $('#datemask2').inputmask('mm/dd/yyyy', { 'placeholder': 'mm/dd/yyyy' })
-    //Money Euro
-    $('[data-mask]').inputmask()
-
-    //Date picker
-    $('#reservationdate').datetimepicker({
-        format: 'L'
-    });
-
-    //Date and time picker
-    $('#reservationdatetime').datetimepicker({ icons: { time: 'far fa-clock' } });
-
-    //Date range picker
-    $('#reservation').daterangepicker()
-    //Date range picker with time picker
-    $('#reservationtime').daterangepicker({
-      timePicker: true,
-      timePickerIncrement: 30,
-      locale: {
-        format: 'MM/DD/YYYY hh:mm A'
-      }
-    })
-    //Date range as a button
-    $('#daterange-btn').daterangepicker(
-      {
-        ranges   : {
-          'Today'       : [moment(), moment()],
-          'Yesterday'   : [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-          'Last 7 Days' : [moment().subtract(6, 'days'), moment()],
-          'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-          'This Month'  : [moment().startOf('month'), moment().endOf('month')],
-          'Last Month'  : [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-        },
-        startDate: moment().subtract(29, 'days'),
-        endDate  : moment()
-      },
-      function (start, end) {
-        $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
-      }
-    )
-
-    //Timepicker
-    $('#timepicker').datetimepicker({
-      format: 'LT'
-    })
 
     //Bootstrap Duallistbox
     $('.duallistbox').bootstrapDualListbox()

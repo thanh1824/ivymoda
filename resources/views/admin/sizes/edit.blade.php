@@ -1,8 +1,8 @@
 @extends('admin.layouts.admin')
 
 @section('title','Edit size')
-@section('controller','List Category')
-@section('action','Danh sách')
+@section('controller','Edit Size')
+@section('action','Sửa')
 @section('content')
 
     <section class="content">
@@ -11,6 +11,7 @@
           @csrf
           <div class="row">
             <div class="col-md-8">
+              @include('admin.patials.error')
               <div class="card card-info">
                 <div class="card-header">
                   <h3 class="card-title">Sửa Size</h3>
@@ -19,25 +20,19 @@
                   
                   <div class="form-group">
                     <label>Tên:</label>
-                    <input type="text" name="name" class="form-control my-colorpicker1" value="{{ $data->name }}">
+                    <input type="text" name="name" class="form-control my-colorpicker1" value="{{ old('name',isset($data) ? $data->name : null) }}">
                   </div>
                   <div class="form-group">
                     <button class="btn btn-info" type="submit">Submit</button>
                   </div>
                 </div>
-                <!-- /.card-body -->
               </div>
-              <!-- /.card -->
-
             </div>
-            <!-- /.col (left) -->
             <div class="col-md-4">
             </div>
-            <!-- /.col (right) -->
           </div>
         </form>
       </div>
-      <!-- /.container-fluid -->
     </section>
     <!-- /.content -->
 

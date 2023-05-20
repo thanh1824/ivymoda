@@ -18,11 +18,15 @@ class SizeController extends Controller
     }
 
     public function store(Request $res){
+        $this->validate($res,
+            ['name' => 'required'],
+            ['name.required' => 'Mã size không được bỏ trống']
+        );
     	$this->size->create([
     		'name'	=>	$res->name,
     		'slug'	=>	Str::slug($res->name)
     	]);
-    	return redirect()->route('size.list');
+    	return redirect()->route('size.list')->with(['flash_level' => 'success', 'flash_message' => 'Thêm mã size thành công !']);
     }
 
     public function list(){
@@ -36,15 +40,19 @@ class SizeController extends Controller
     }
 
     public function update(Request $res, $id){
+        $this->validate($res,
+            ['name' => 'required'],
+            ['name.required' => 'Mã size không được bỏ trống']
+        );
         $this->size->find($id)->update([
             'name'  =>  $res->name,
             'slug'  =>  Str::slug($res->name)
         ]);
-        return redirect()->route('size.list');
+        return redirect()->route('size.list')->with(['flash_level' => 'success', 'flash_message' => 'Sửa mã size thành công !']);
     }
 
     public function delete($id){
         $this->size->find($id)->delete();
-        return redirect()->route('size.list');
+        return redirect()->route('size.list')->with(['flash_level' => 'success', 'flash_message' => 'Mã size đã được xóa']);
     }
 }

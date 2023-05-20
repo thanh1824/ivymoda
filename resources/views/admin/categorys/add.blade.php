@@ -11,6 +11,7 @@
       		@csrf
       		<div class="row">
 	          <div class="col-md-8">
+              @include('admin.patials.error')
 	            <div class="card card-info">
 	              <div class="card-header">
 	                <h3 class="card-title">Thêm Danh mục sản phẩm</h3>

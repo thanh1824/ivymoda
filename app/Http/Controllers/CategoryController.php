@@ -26,12 +26,16 @@ class CategoryController extends Controller
     }
 
     public function store(Request $res){
+        $this->validate($res,
+            ['name' => 'required'],
+            ['name.required' => 'Bạn cần nhập tên danh mục !']
+        );
     	$this->category->create([
     		'name'	=>	$res->name,
     		'parent_id'	=>	$res->parent_id,
     		'slug'	=>	Str::slug($res->name)
     	]);
-    	return redirect()->route('categorys.list');
+    	return redirect()->route('categorys.list')->with(['flash_level' => 'success', 'flash_message' => 'Thêm danh mục sp thành công !']);
     }
 
     public function list(){
@@ -46,17 +50,27 @@ class CategoryController extends Controller
     }
 
     public function update(Request $res, $id){
+        $this->validate($res,
+            ['name' => 'required'],
+            ['name.required' => 'Bạn cần nhập tên danh mục !']
+        );
         $this->category->find($id)->update([
             'name'  =>  $res->name,
             'parent_id' =>  $res->parent_id,
             'slug'  =>  Str::slug($res->name)
         ]);
-        return redirect()->route('categorys.list');
+        return redirect()->route('categorys.list')->with(['flash_level' => 'success', 'flash_message' => 'Thêm danh mục sp thành công !']);
     }
 
     public function delete($id){
-        $this->category->find($id)->delete();
-        return redirect()->route('categorys.list');
+        $parent = Category::where('parent_id',$id)->count();
+        if ($parent == 0) {
+            $this->category->find($id)->delete();
+            return redirect()->route('categorys.list')->with(['flash_level' => 'success', 'flash_message' => 'Xóa danh mục sp thành công !']);
+        }else{
+            return redirect()->route('categorys.list')->with(['flash_level' => 'danger', 'flash_message' => 'Xin lỗi, bạn cần xóa danh mục con trước!']);
+        }
+        
     }
 
     

@@ -30,7 +30,7 @@
                     
                   <tr>
                     <td>{{ $item['title'] }}</td>
-                    <td><img style="max-width: 150px;" class="img-responsive" src="https://pubcdn.ivymoda.com/files/news/2023/05/06/b49e652f57bb6183634060da67260916jpgjpgjpgjpgjpgjpg.jpg" alt=""></td>
+                    <td><img style="max-width: 150px;" class="img-responsive" src="{{ asset($item['image']) }}" alt=""></td>
                     <td>{{ $item['created_at'] }}</td>
                     <td><a href="{{ route('posts.edit', ['id'=>$item['id']]) }}"><i class="fas fa-pen"></i></a> <span style="padding: 10px">|</span>
                       <a href="{{ route('posts.delete',['id'=>$item['id']]) }}" onclick="return confirm('Bạn chắc muốn xóa tin này ?')" style="color:red"><i class="fas fa-light fa-trash"></i></a></td>

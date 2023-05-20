@@ -24,7 +24,6 @@ class EditPost extends FormRequest
         return [
             'news_id'       =>  'required',
             'title'         =>  'required',
-            'news_image'    =>  'required|image',
             'content'       =>  'required'
         ];
     }
@@ -32,8 +31,6 @@ class EditPost extends FormRequest
         return [
             'news_id.required'    =>   'Bạn chưa nhập tiêu đề.',
             'news_id.required'   =>   'Bạn chưa chọn loại tin tức.',
-            'news_image.required'   =>   'Bạn thêm ảnh cho tin',
-            'news_image.image'     =>   'Sai định dạng ảnh',
             'content.required'     =>   'Bạn chưa nhập nội dung',
         ];
     }

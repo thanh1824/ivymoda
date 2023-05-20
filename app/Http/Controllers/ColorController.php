@@ -18,11 +18,15 @@ class ColorController extends Controller
     }
 
     public function store(Request $res){
+        $this->validate($res,
+            ['name' => 'required'],
+            ['name.required' => 'Bạn chưa nhập mã màu']
+        );
     	$this->color->create([
     		'name'	=>	$res->name,
     		'slug'	=>	Str::slug($res->name)
     	]);
-    	return redirect()->route('color.list');
+    	return redirect()->route('color.list')->with(['flash_level' => 'success', 'flash_message' => 'Thêm mới một mã màu thành công !']);
     }
 
     public function list(){
@@ -36,15 +40,19 @@ class ColorController extends Controller
     }
 
     public function update(Request $res, $id){
+        $this->validate($res,
+            ['name' => 'required'],
+            ['name.required' => 'Bạn chưa nhập mã màu']
+        );
         $this->color->find($id)->update([
             'name'  =>  $res->name,
             'slug'  =>  Str::slug($res->name)
         ]);
-        return redirect()->route('color.list');
+        return redirect()->route('color.list')->with(['flash_level' => 'success', 'flash_message' => 'Sửa mã màu thành công !']);
     }
 
     public function delete($id){
         $this->color->find($id)->delete();
-        return redirect()->route('color.list');
+        return redirect()->route('color.list')->with(['flash_level' => 'success', 'flash_message' => 'Mã màu đã được xóa']);
     }
 }

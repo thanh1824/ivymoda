@@ -43,7 +43,12 @@
               </p>
             </a>
           </li>
-
+          <li class="nav-item">
+            <a href="{{ route('slides.list') }}" class="nav-link">
+              <i class="nav-icon fas fa-image"></i>
+              <p>Slide</p>
+            </a>
+          </li>
           <li class="nav-item">
             <a href="{{ route('categorys.list') }}" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
@@ -51,18 +56,36 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ route('size.list') }}" class="nav-link">
-              <i class="nav-icon fas fa-ruler"></i>
-              <p>Size</p>
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-newspaper"></i>
+              <p>
+                Thông tin sản phẩm
+                <i class="fas fa-angle-left right"></i>
+                
+              </p>
             </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ route('color.list') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Màu sắc</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ route('size.list') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Size</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ route('parameters.list') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Thông số</p>
+                </a>
+              </li>
+            </ul>
           </li>
-          <li class="nav-item">
-            <a href="{{ route('color.list') }}" class="nav-link">
-              <i class="nav-icon fas fa-palette"></i>
-              <p>Color</p>
-            </a>
-          </li>
-
+          
           <li class="nav-item">
             <a href="pages/widgets.html" class="nav-link">
               <i class="nav-icon fas fa-th"></i>

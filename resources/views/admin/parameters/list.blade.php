@@ -1,8 +1,8 @@
 
 @extends('admin.layouts.admin')
 
-@section('title','News Ivy Moda')
-@section('controller','List News')
+@section('title','Ivy Moda')
+@section('controller','List Parameter')
 @section('action','Danh sách')
 @section('content')
 
@@ -12,14 +12,14 @@
           <div class="col-12">
             <div class="card">
               <div class="card-header">
-                <a href="{{ route('news.add') }}" class="btn btn-success">Add</a>
+                <a href="{{ route('parameters.add') }}" class="btn btn-success">Add</a>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                   <tr>
-                    <th>Tên danh mục</th>
+                    <th>Thông số</th>
                     <th></th>
                   </tr>
                   </thead>
@@ -28,9 +28,8 @@
                     
                   <tr>
                     <td>{{ $item['name'] }}</td>
-                    
-                    <td><a href="{{ route('news.edit', ['id'=>$item['id']]) }}"><i class="fas fa-pen"></i></a> <span style="padding: 10px">|</span>
-                      <a href="{{ route('news.delete',['id'=>$item['id']]) }}" onclick="return confirm('Bạn chắc muốn xóa danh mục này ?')" style="color:red"><i class="fas fa-light fa-trash"></i></a></td>
+                    <td><a href="{{ route('parameters.edit', ['id'=>$item['id']]) }}"><i class="fas fa-pen"></i></a> <span style="padding: 10px">|</span>
+                      <a href="{{ route('parameters.delete',['id'=>$item['id']]) }}" onclick="return confirm('Bạn chắc muốn xóa mã này ?')" style="color:red"><i class="fas fa-light fa-trash"></i></a></td>
                   </tr>
                   @endforeach
                   </tbody>

@@ -7,7 +7,8 @@ use App\Http\Controllers\SizeController;
 use App\Http\Controllers\ColorController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\PostsController;
-
+use App\Http\Controllers\SlideController;
+use App\Http\Controllers\ParameterController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -66,6 +67,22 @@ Route::group(['prefix' => 'quan-tri-he-thong'], function () {
 		Route::get('/edit/{id}', [PostsController::class, 'edit'])->name('posts.edit');
 		Route::post('/update/{id}',[PostsController::class, 'update'])->name('posts.update');
 		Route::get('/delete/{id}', [PostsController::class, 'delete'])->name('posts.delete');
+	});
+	Route::group(['prefix' => 'slides'], function () {
+		Route::get('/list', [SlideController::class, 'list'])->name('slides.list');
+		Route::get('/create', [SlideController::class, 'create'])->name('slides.add');
+		Route::post('/store', [SlideController::class, 'store'])->name('slides.store');
+		Route::get('/edit/{id}', [SlideController::class, 'edit'])->name('slides.edit');
+		Route::post('/update/{id}',[SlideController::class, 'update'])->name('slides.update');
+		Route::get('/delete/{id}', [SlideController::class, 'delete'])->name('slides.delete');
+	});
+	Route::group(['prefix' => 'parameters'], function () {
+		Route::get('/list', [ParameterController::class, 'list'])->name('parameters.list');
+		Route::get('/create', [ParameterController::class, 'create'])->name('parameters.add');
+		Route::post('/store', [ParameterController::class, 'store'])->name('parameters.store');
+		Route::get('/edit/{id}', [ParameterController::class, 'edit'])->name('parameters.edit');
+		Route::post('/update/{id}',[ParameterController::class, 'update'])->name('parameters.update');
+		Route::get('/delete/{id}', [ParameterController::class, 'delete'])->name('parameters.delete');
 	});
 });
 
